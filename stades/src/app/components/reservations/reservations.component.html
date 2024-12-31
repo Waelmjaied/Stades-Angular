@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Gestion des Terrains</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<div class="container">
+
+    <!-- Header Section -->
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card bg-info text-white">
+                <div class="card-header">
+                    <h1>Campus Sportif ESSAT <font size="5pt"> (Espace Administrateur) </font></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Welcome Section -->
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="alert alert-warning">
+                Bienvenue Mr/Mlle <b>Salmen</b> <a href="#" >(Déconnexion)</a>
+            </div>
+        </div>
+    </div>
+
+    <!-- Sidebar and Content Section -->
+    <div class="row" style="margin-top: 10px;">
+        <!-- Sidebar -->
+        <div class="col-3">
+            <div class="list-group">
+                <a routerLink="/terrain" class="list-group-item list-group-item-action active">
+                    <span class="fa fa-th-large"></span> Gestion des Terrains
+                </a>
+                <a routerLink="/adherants" class="list-group-item list-group-item-action">
+                    <span class="fa fa-th-large"></span> Gestion des Adhérants
+                </a>
+                <a routerLink="/reservations" class="list-group-item list-group-item-action">
+                    <span class="fa fa-th-large"></span> Gestion des Réservations
+                </a>
+            </div>
+        </div>
+
+        <!-- Main Content -->
+        <div class="col-9">
+            <div class="card">
+                <div class="card-header bg-success text-white">
+                    <h5>Liste des Réservations</h5>
+                </div>
+                <div class="card-body">
+                    <a routerLink="/reserver" class="btn btn-primary mb-3">Ajouter une réservation</a>
+                    <table class="table table-hover">
+                        <thead class="thead-light">
+                            <tr>
+                                <th>Titre Terrain</th>
+                                <th>Adhérant</th>
+                                <th>Date</th>
+                                <th>Heure Début</th>
+                                <th>Heure Fin</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let reservation of reservations">
+                                <td>{{ reservation.terrain.nom }}</td>
+                                <td>{{ reservation.user.nom }}</td>
+                                <td>{{ reservation.date_res }}</td>
+                                <td>{{ reservation.heure_debut }}</td>
+                                <td>{{ reservation.heure_fin }}</td>
+                                <td>
+                                    <button (click)="deleteReservation(reservation.id)" class="btn btn-danger btn-sm">Delete</button>
+
+                                </td>
+                            </tr>
+                            <tr *ngIf="reservations.length === 0">
+                                <td colspan="6" class="text-center">No reservations found.</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js"></script>
+</body>
+</html>

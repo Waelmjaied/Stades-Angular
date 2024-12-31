@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Gestion des Terrains</title>
+</head>
+<body>
+<div class="container">
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="card bg-info text-white">
+                <div class="card-header">
+                    <h1>Campus Sportif ESSAT  <font size="5pt"> (Espace Administrateur) </font></h1>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="row mt-2">
+        <div class="col-12">
+            <div class="alert alert-warning">
+                Bienvenue Mr/Mlle <b>Salmen</b> <a href="#" >(Déconnexion)</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:10px;">
+        <div class="col-3">
+            <div class="list-group">
+                <a routerLink="/terrain" class="list-group-item list-group-item-action active">
+                    <span class="fa fa-th-large"></span> Gestion des Terrains
+                </a>
+                <a routerLink="/adherants" class="list-group-item list-group-item-action">
+                    <span class="fa fa-th-large"></span> Gestion des Adhérants
+                </a>
+                <a routerLink="/reservations" class="list-group-item list-group-item-action">
+                    <span class="fa fa-th-large"></span> Gestion des Réservations
+                </a>
+
+            </div>
+        </div>
+
+        <div class="col-9">
+            <div class="card text-white">
+                <div class="card-header bg-success"> <h5>Liste des Terrains </h5></div>
+
+                <div *ngIf="loading" class="text-center">Loading...</div> <!-- Show loading state -->
+                <div *ngIf="error" class="alert alert-danger">{{ error }}</div> <!-- Show error message -->
+                <div class="card-body">
+                <a routerLink="/add-terrain" class="btn btn-primary mb-3">Ajouter un terrain</a>
+
+                <table class="table table-hover" *ngIf="!loading && terrains.length > 0">
+
+                    <thead class="thead-light">
+                        <tr>
+                            <th>ID</th>
+                            <th>Titre Terrain</th>
+                            <th>Surface</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let terrain of terrains">
+                            <td>{{ terrain.id }}</td>
+                            <td>{{ terrain.nom }}</td>
+                            <td>{{ terrain.surface }}</td>
+                            <button (click)="deleteTerrain(terrain.id)" class="btn btn-danger btn-sm">Delete</button>
+                        </tr>
+                    </tbody>
+                </table>
+              </div>
+                <div *ngIf="terrains.length === 0 && !loading">
+                    No terrains available.
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+</body>
+</html>

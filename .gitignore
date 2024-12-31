@@ -1,0 +1,10 @@
+
+# Node.js dependencies
+stades/node_modules/
+stades-back/.idea
+# Build outputs
+stades/dist/
+# IDE and editor settings
+*.log
+.vscode/
+.DS_Store
