@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: gestion-stade
+spec:
+  replicas: 2
+  selector:
+    matchLabels:
+      app: gestion-stade
+  template:
+    metadata:
+      labels:
+        app: gestion-stade
+    spec:
+      containers:
+      - name: gestion-stade
+        image: your-docker-repo/gestion-stade:latest
+        ports:
+        - containerPort: 80
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: gestion-stade
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    targetPort: 80
+  selector:
+    app: gestion-stade
